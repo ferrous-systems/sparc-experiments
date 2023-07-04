@@ -4,6 +4,7 @@ runner = "tsim-leon3 -c sim-commands.txt"
 
 [build]
 target = ["sparc-unknown-none.json"]
+rustflags = "-C target-cpu=leon3"
 
 [unstable]
 build-std = ["core"]
