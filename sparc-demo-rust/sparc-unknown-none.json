@@ -1,10 +1,9 @@
 {
   "arch": "sparc",
-  "cpu": "leon3",
   "data-layout": "E-m:e-p:32:32-i64:64-f128:64-n32-S64",
   "emit-debug-gdb-scripts": false,
   "is-builtin": false,
-  "linker": "sparc-gaisler-elf-clang",
+  "linker": "sparc-elf-gcc",
   "post-link-args": {
     "gcc": [
       "-latomic"
