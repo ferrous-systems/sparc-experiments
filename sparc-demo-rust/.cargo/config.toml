@@ -1,2 +1,9 @@
 [target.sparc-unknown-none]
+linker = "sparc-gaisler-elf-clang"
 runner = "tsim-leon3 -c sim-commands.txt"
+
+[build]
+target = ["sparc-unknown-none.json"]
+
+[unstable]
+build-std = ["core"]

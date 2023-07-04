@@ -3,7 +3,7 @@
 This is a demo of Rust on the LEON3. It runs in the Gaisler TSIM3.
 
 ```console
-RUSTC_BOOTSTRAP=1 cargo run -Z build-std=core --target=sparc-unknown-none.json
+$ RUSTC_BOOTSTRAP=1 cargo run
    Compiling sparc-demo-rust v0.1.0 (/work/sparc-demo-rust)
     Finished dev [unoptimized + debuginfo] target(s) in 3.44s
      Running `tsim-leon3 -c sim-commands.txt target/sparc-unknown-none/debug/sparc-demo-rust`
@@ -37,6 +37,7 @@ PANIC: PanicInfo { payload: Any { .. }, message: Some(I am a panic), location: L
   Program exited normally on CPU 0.
 ```
 
-You should have `sparc-gaisler-elf-clang` available in your PATH. Use a nightly
-rustc (or put stable Rust into nightly mode).
+You should have `sparc-gaisler-elf-clang` available in your PATH - pick another
+toolchain using the [`.cargo/config.toml`](./.cargo/config.toml) file. Use a
+nightly rustc (or put stable Rust into nightly mode).
 
