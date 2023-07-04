@@ -37,6 +37,18 @@ pub extern "C" fn main() -> i32 {
 fn rust_main() {
     let mut console = Console;
     writeln!(console, "Hello, this is Rust!").unwrap();
+    write!(console, "    ").unwrap();
+    for y in 0..10 {
+        write!(console, "{:2} ", y).unwrap();
+    }
+    writeln!(console).unwrap();
+    for x in 0..10 {
+        write!(console, "{:2}: ", x).unwrap();
+        for y in 0..10 {
+            write!(console, "{:2} ", x * y).unwrap();
+        }
+        writeln!(console).unwrap();
+    }
     panic!("I am a panic");
 }
 
