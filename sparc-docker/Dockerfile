@@ -1,6 +1,7 @@
-FROM ubuntu:22.04
+FROM rust:bookworm
 
-RUN apt-get -y update && apt-get -y upgrade
+# Update repo list and installed packages
+RUN apt-get update -y && apt-get upgrade -y
 
 # Install-time dependencies
 RUN apt-get -y install curl xz-utils
@@ -20,14 +21,11 @@ RUN curl --proto '=https' -tlsv1.2 -LsSf https://www.gaisler.com/tsim3/tsim-eval
 # Run-time dependencies
 RUN apt-get -y install libnspr4 libtinfo5 make gcc
 
-# Install rustup
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > /tmp/rustup.sh && \
-    bash /tmp/rustup.sh -y && \
-    rm /tmp/rustup.sh && \
-    /root/.cargo/bin/rustup component add rust-src
+RUN mkdir /work
+WORKDIR /work
 
 # Set system PATH
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/tsim-eval/tsim/linux-x64:/opt/bcc-2.2.3-llvm/bin:/root/.cargo/bin
 
-# Set up passwordless sudo
-RUN echo 'ALL            ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers
+# We want Rust to work in nightly-mode, because we need to build libcore
+ENV RUSTC_BOOTSTRAP=1
