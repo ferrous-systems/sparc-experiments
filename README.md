@@ -9,7 +9,7 @@ $ cd sparc-docker
 $ docker build -t sparc-docker .
 ```
 
-The docker container downloads SPARC tools and the TSIM simulator from Gaisler. You should checking the licences for those tools before distributing the built container containing them.
+The docker container downloads SPARC tools and the TSIM simulator from Gaisler. You should check the licences for those tools before distributing the built container containing them.
 
 There is a C example in `sparc-demo-c` (to check the tools work):
 
