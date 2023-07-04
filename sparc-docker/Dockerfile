@@ -21,11 +21,14 @@ RUN curl --proto '=https' -tlsv1.2 -LsSf https://www.gaisler.com/tsim3/tsim-eval
 # Run-time dependencies
 RUN apt-get -y install libnspr4 libtinfo5 make gcc
 
+# Rust libcore source
+RUN rustup component add rust-src
+
 RUN mkdir /work
 WORKDIR /work
 
 # Set system PATH
-ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/tsim-eval/tsim/linux-x64:/opt/bcc-2.2.3-llvm/bin:/root/.cargo/bin
+ENV PATH=$PATH:/bin:/opt/tsim-eval/tsim/linux-x64:/opt/bcc-2.2.3-llvm/bin
 
 # We want Rust to work in nightly-mode, because we need to build libcore
 ENV RUSTC_BOOTSTRAP=1
