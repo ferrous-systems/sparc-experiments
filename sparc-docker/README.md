@@ -27,3 +27,16 @@ Allocated 8192 KiB SRAM memory, in 1 bank at 0x40000000
 Allocated 32 MiB SDRAM memory, in 1 bank at 0x60000000
 Allocated 8192 KiB ROM memory at 0x00000000
 ```
+
+## Licence
+
+Copyright (c) Ferrous Systems, 2023
+
+Licensed under either [MIT](../LICENSE-MIT) or [Apache-2.0](../LICENSE-APACHE)
+at your option.
+
+## Contribution
+
+Unless you explicitly state otherwise, any contribution intentionally submitted
+for inclusion in the work by you shall be licensed as above, without any
+additional terms or conditions.

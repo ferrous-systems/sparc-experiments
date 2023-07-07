@@ -19,21 +19,24 @@ $ docker run --rm -ti -v $(pwd):/work sparc-docker
 # make run
 ```
 
-
-There is a Rust example in `sparc-demo-rustc`
+There is a Rust example in `sparc-demo-rustc`. See the [README](./sparc-demo-rust/README.md) for more info.
 
 ```console
 $ docker run --rm -ti -v $(pwd):/work sparc-docker
 # cd /work/sparc-demo-rust
-# RUSTC_BOOTSTRAP=1 cargo build -Z build-std=core --target=sparc-unknown-none.json
+# RUSTC_BOOTSTRAP=1 cargo build --release
+# tsim-leon3 ./target/sparc-unknown-none/release/sparc-demo-rust
 ```
 
 ## Licence
 
 Copyright (c) Ferrous Systems, 2023
 
-Licensed under either MIT or Apache-2.0 at your option.
+Licensed under either [MIT](./LICENSE-MIT) or [Apache-2.0](./LICENSE-APACHE) at
+your option.
 
 ## Contribution
 
-Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in the work by you shall be licensed as above, without any additional terms or conditions.
+Unless you explicitly state otherwise, any contribution intentionally submitted
+for inclusion in the work by you shall be licensed as above, without any
+additional terms or conditions.

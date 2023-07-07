@@ -41,3 +41,37 @@ You should have `sparc-gaisler-elf-clang` available in your PATH - pick another
 toolchain using the [`.cargo/config.toml`](./.cargo/config.toml) file. Use a
 nightly rustc (or put stable Rust into nightly mode).
 
+## Alternate targets
+
+By default the project is set to use a custom JSON target in
+[sparc-unknown-none.json](./sparc-unknown-none.json). If your `rustc` includes
+appropriate bare-metal SPARC target (and as of 2023-07-07, upstream rust does
+*not*, so you have to patch it yourself), can you use that instead:
+
+```console
+# cargo +mynightly build --release --target=sparc-unknown-none-elf
+# tsim-leon3 ./target/sparc-unknown-none-elf/release/sparc-demo-rust
+```
+
+Your target should include the default libraries for the SPARC toolchain,
+because this project doesn't include any start-up code.
+
+## Alternate CPUs
+
+We use the [`.cargo/config.toml`](.cargo/config.toml) file to set the CPU to
+`leon3`. Feel free to pick an alternative. You may also need to add extra
+arguments to tell your toolchain which BSP to use. The Gaisler toolchain uses a
+Leon3 BSP by default.
+
+## Licence
+
+Copyright (c) Ferrous Systems, 2023
+
+Licensed under either [MIT](../LICENSE-MIT) or [Apache-2.0](../LICENSE-APACHE)
+at your option.
+
+## Contribution
+
+Unless you explicitly state otherwise, any contribution intentionally submitted
+for inclusion in the work by you shall be licensed as above, without any
+additional terms or conditions.
