@@ -4,7 +4,7 @@
   "emit-debug-gdb-scripts": false,
   "is-builtin": false,
   "linker": "sparc-elf-gcc",
-  "no-default-libraries": "yes",
+  "no-default-libraries": false,
   "target-endian": "big",
   "linker-flavor": "gcc",
   "llvm-target": "sparc-unknown-none-elf",
