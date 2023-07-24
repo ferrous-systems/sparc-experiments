@@ -1,12 +1,4 @@
-# The JSON target
-[target.sparc-unknown-none]
-# Either tool should work as a linker
-linker = "sparc-gaisler-elf-clang"
-# linker = "sparc-gaisler-elf-gcc"
-runner = "tsim-leon3 -c sim-commands.txt"
-
-# Settings for a possible future built-in target
-# 
+# Available in rust nightly from 2023-07-18
 [target.sparc-unknown-none-elf]
 # Either tool should work as a linker
 # linker = "sparc-gaisler-elf-clang"
@@ -14,9 +6,7 @@ linker = "sparc-gaisler-elf-gcc"
 runner = "tsim-leon3 -c sim-commands.txt"
 
 [build]
-# Switch to possible future built-in target
-# target = ["sparc-unknown-none-elf"]
-target = ["sparc-unknown-none.json"]
+target = ["sparc-unknown-none-elf"]
 rustflags = "-Ctarget-cpu=leon3"
 
 [unstable]
