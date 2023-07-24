@@ -1,9 +1,13 @@
 # LEON3 demo for Rust
 
-This is a demo of Rust on the LEON3. It runs in the Gaisler TSIM3.
+This is a demo of Rust on the LEON3. It runs in the Gaisler TSIM3 and requires
+nightly rust so we can build the libcore library for SPARC (which is not shipped
+by `rustup`).
+
+Requires Rust nightly 2023-07-18 or newer.
 
 ```console
-$ RUSTC_BOOTSTRAP=1 cargo run
+$ cargo +nightly run
    Compiling sparc-demo-rust v0.1.0 (/work/sparc-demo-rust)
     Finished dev [unoptimized + debuginfo] target(s) in 3.44s
      Running `tsim-leon3 -c sim-commands.txt target/sparc-unknown-none/debug/sparc-demo-rust`
@@ -38,23 +42,7 @@ PANIC: PanicInfo { payload: Any { .. }, message: Some(I am a panic), location: L
 ```
 
 You should have `sparc-gaisler-elf-clang` available in your PATH - pick another
-toolchain using the [`.cargo/config.toml`](./.cargo/config.toml) file. Use a
-nightly rustc (or put stable Rust into nightly mode).
-
-## Alternate targets
-
-By default the project is set to use a custom JSON target in
-[sparc-unknown-none.json](./sparc-unknown-none.json). If your `rustc` includes
-appropriate bare-metal SPARC target (and as of 2023-07-07, upstream rust does
-*not*, so you have to patch it yourself), can you use that instead:
-
-```console
-# cargo +mynightly build --release --target=sparc-unknown-none-elf
-# tsim-leon3 ./target/sparc-unknown-none-elf/release/sparc-demo-rust
-```
-
-Your target should include the default libraries for the SPARC toolchain,
-because this project doesn't include any start-up code.
+toolchain using the [`.cargo/config.toml`](./.cargo/config.toml) file.
 
 ## Alternate CPUs
 
@@ -62,6 +50,10 @@ We use the [`.cargo/config.toml`](.cargo/config.toml) file to set the CPU to
 `leon3`. Feel free to pick an alternative. You may also need to add extra
 arguments to tell your toolchain which BSP to use. The Gaisler toolchain uses a
 Leon3 BSP by default.
+
+See
+<https://doc.rust-lang.org/nightly/rustc/platform-support/sparc-unknown-none-elf.html>
+for more information about the target.
 
 ## Licence
 
