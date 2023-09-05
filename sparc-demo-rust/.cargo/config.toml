@@ -1,13 +1,18 @@
 # Available in rust nightly from 2023-07-18
 [target.sparc-unknown-none-elf]
 # Either tool should work as a linker
-# linker = "sparc-gaisler-elf-clang"
-linker = "sparc-gaisler-elf-gcc"
+# linker = "sparc-gaisler-elf-gcc"
+linker = "sparc-gaisler-elf-clang"
+rustflags = [
+    "-Ctarget-cpu=leon3",
+    "-Clinker-flavor=gcc",
+    "-Clink-arg=-mcpu=leon3",
+    "-Clink-arg=-latomic",
+]
 runner = "tsim-leon3 -c sim-commands.txt"
 
 [build]
 target = ["sparc-unknown-none-elf"]
-rustflags = "-Ctarget-cpu=leon3"
 
 [unstable]
 build-std = ["core"]
