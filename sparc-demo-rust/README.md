@@ -36,7 +36,18 @@ read 1006 symbols
 
   Initializing and starting from 0x40000000
 Hello, this is Rust!
-PANIC: PanicInfo { payload: Any { .. }, message: Some(I am a panic), location: Location { file: "src/main.rs", line: 33, col: 5 }, can_unwind: true }
+     0  1  2  3  4  5  6  7  8  9 
+ 0:  0  0  0  0  0  0  0  0  0  0 
+ 1:  0  1  2  3  4  5  6  7  8  9 
+ 2:  0  2  4  6  8 10 12 14 16 18 
+ 3:  0  3  6  9 12 15 18 21 24 27 
+ 4:  0  4  8 12 16 20 24 28 32 36 
+ 5:  0  5 10 15 20 25 30 35 40 45 
+ 6:  0  6 12 18 24 30 36 42 48 54 
+ 7:  0  7 14 21 28 35 42 49 56 63 
+ 8:  0  8 16 24 32 40 48 56 64 72 
+ 9:  0  9 18 27 36 45 54 63 72 81 
+PANIC: PanicInfo { payload: Any { .. }, message: Some(I am a panic), location: Location { file: "src/main.rs", line: 56, col: 5 }, can_unwind: true, force_no_backtrace: false }
 
   Program exited normally on CPU 0.
 ```
@@ -47,9 +58,9 @@ toolchain using the [`.cargo/config.toml`](./.cargo/config.toml) file.
 ## Alternate CPUs
 
 We use the [`.cargo/config.toml`](.cargo/config.toml) file to set the CPU to
-`leon3`. Feel free to pick an alternative. You may also need to add extra
-arguments to tell your toolchain which BSP to use. The Gaisler toolchain uses a
-Leon3 BSP by default.
+`leon3` and the BCC BSP to `leon3`. Feel free to pick an alternative. You may
+also need to alter these arguments to tell your toolchain which BSP or CPU you
+are using.
 
 See
 <https://doc.rust-lang.org/nightly/rustc/platform-support/sparc-unknown-none-elf.html>
