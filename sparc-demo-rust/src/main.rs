@@ -29,25 +29,29 @@ impl core::fmt::Write for Console {
 /// Just jumps to [`rust_main`].
 #[no_mangle]
 pub extern "C" fn main() -> i32 {
-    rust_main();
-    1
+    if let Err(e) = rust_main() {
+        panic!("Main returned {:?}", e);
+    } else {
+        0
+    }
+    
 }
 
 /// The main function for our Rust program
-fn rust_main() {
+fn rust_main() -> Result<(), core::fmt::Error> {
     let mut console = Console;
-    writeln!(console, "Hello, this is Rust!").unwrap();
-    write!(console, "    ").unwrap();
+    writeln!(console, "Hello, this is Rust!")?;
+    write!(console, "    ")?;
     for y in 0..10 {
-        write!(console, "{:2} ", y).unwrap();
+        write!(console, "{:2} ", y)?;
     }
-    writeln!(console).unwrap();
+    writeln!(console)?;
     for x in 0..10 {
-        write!(console, "{:2}: ", x).unwrap();
+        write!(console, "{:2}: ", x)?;
         for y in 0..10 {
-            write!(console, "{:2} ", x * y).unwrap();
+            write!(console, "{:2} ", x * y)?;
         }
-        writeln!(console).unwrap();
+        writeln!(console)?;
     }
     panic!("I am a panic");
 }
