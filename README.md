@@ -5,8 +5,8 @@ Rust on the Gaisler LEON3
 There is a docker container in [`sparc-docker/Dockerfile`](./sparc-docker/Dockerfile).
 
 ```console
-$ cd sparc-docker
-$ docker build -t sparc-docker .
+cd sparc-docker
+docker build -t sparc-docker .
 ```
 
 The docker container downloads SPARC tools and the TSIM simulator from Gaisler. You should check the licences for those tools before distributing the built container containing them.
@@ -24,8 +24,7 @@ There is a Rust example in `sparc-demo-rustc`. See the [README](./sparc-demo-rus
 ```console
 $ docker run --rm -ti -v $(pwd):/work sparc-docker
 # cd /work/sparc-demo-rust
-# RUSTC_BOOTSTRAP=1 cargo build --release
-# tsim-leon3 ./target/sparc-unknown-none/release/sparc-demo-rust
+# cargo +nightly run --release
 ```
 
 ## Licence
