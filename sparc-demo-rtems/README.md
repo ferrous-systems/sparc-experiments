@@ -73,9 +73,7 @@ function.
 
 We use the [`Makefile`](./Makefile) and the
 [`rtemsdemo/.cargo/config.toml`](./rtemsdemo/.cargo/config.toml) file to set the
-CPU to `leon3` and the BCC BSP to `leon3`. Feel free to pick an alternative. You
-may also need to alter these arguments to tell your toolchain which BSP or CPU
-you are using.
+CPU to `leon3` and the BCC BSP to `leon3`. Feel free to pick an alternative.
 
 See
 <https://doc.rust-lang.org/nightly/rustc/platform-support/sparc-unknown-none-elf.html>
