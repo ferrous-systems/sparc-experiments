@@ -1,0 +1,23 @@
+# Available in rust nightly from 2023-07-18
+[target.sparc-unknown-none-elf]
+# Either kind of RCC should work as a linker
+# linker = "sparc-gaisler-rtems5-gcc"
+linker = "sparc-gaisler-rtems5-clang"
+rustflags = [
+    # Tell Rust's LLVM to target the LEON3
+    "-Ctarget-cpu=leon3",
+    # Tell Rust our linker is a gcc compatible C Compiler
+    "-Clinker-flavor=gcc",
+    # Some Gaisler RCC options we want rustc to pass to the linker
+    "-Clink-arg=-mcpu=leon3",
+    "-Clink-arg=-qbsp=leon3",
+    # We need BCC's libatomic.a to satisfy Rust's compiler-builtin library
+    "-Clink-arg=-latomic",
+]
+runner = "tsim-leon3 -c sim-commands.txt"
+
+[build]
+target = ["sparc-unknown-none-elf"]
+
+[unstable]
+build-std = ["core"]
