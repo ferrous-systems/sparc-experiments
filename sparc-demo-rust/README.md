@@ -58,9 +58,7 @@ toolchain using the [`.cargo/config.toml`](./.cargo/config.toml) file.
 ## Alternate CPUs
 
 We use the [`.cargo/config.toml`](.cargo/config.toml) file to set the CPU to
-`leon3` and the BCC BSP to `leon3`. Feel free to pick an alternative. You may
-also need to alter these arguments to tell your toolchain which BSP or CPU you
-are using.
+`leon3` and the BCC BSP to `leon3`. Feel free to pick an alternative.
 
 See
 <https://doc.rust-lang.org/nightly/rustc/platform-support/sparc-unknown-none-elf.html>
