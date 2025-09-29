@@ -2,6 +2,9 @@
 #![no_main]
 
 use core::fmt::Write;
+use core::sync::atomic::{AtomicU32, Ordering};
+
+static ATOMIC_CHECK: AtomicU32 = AtomicU32::new(100);
 
 extern "C" {
     fn putchar(ch: i32);
@@ -41,6 +44,10 @@ pub extern "C" fn main() -> i32 {
 fn rust_main() -> Result<(), core::fmt::Error> {
     let mut console = Console;
     writeln!(console, "Hello, this is Rust!")?;
+    writeln!(console, "Atomic was {}", ATOMIC_CHECK.fetch_add(1, Ordering::Relaxed))?;
+    writeln!(console, "Atomic was {}", ATOMIC_CHECK.fetch_add(1, Ordering::Relaxed))?;
+    writeln!(console, "Atomic was {}", ATOMIC_CHECK.fetch_add(1, Ordering::Relaxed))?;
+
     write!(console, "    ")?;
     for y in 0..10 {
         write!(console, "{:2} ", y)?;
