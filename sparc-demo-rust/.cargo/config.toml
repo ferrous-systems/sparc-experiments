@@ -21,3 +21,8 @@ target = ["sparc-unknown-none-elf"]
 
 [unstable]
 build-std = ["core"]
+
+[env]
+CC_sparc_unknown_none_elf = "sparc-gaisler-elf-cc"
+CFLAGS_sparc_unknown_none_elf = "-mcpu=leon3"
+CRATE_CC_NO_DEFAULTS = "1"
