@@ -11,6 +11,18 @@ extern "C" {
     fn _exit(code: i32) -> !;
 }
 
+#[derive(Copy, Clone, PartialEq, Debug)]
+#[repr(C)]
+pub struct TwoU8s {
+    one: u8,
+    two: u8,
+}
+
+unsafe extern "C" {
+    safe fn rust_dbg_extern_identity_TwoU8s(v: TwoU8s) -> TwoU8s;
+    safe fn rust_dbg_extern_return_TwoU8s() -> TwoU8s;
+}
+
 /// Represents the standard-output available in tsim.
 ///
 /// Uses the `putchar` C function to print text.
@@ -37,7 +49,6 @@ pub extern "C" fn main() -> i32 {
     } else {
         0
     }
-    
 }
 
 /// The main function for our Rust program
@@ -60,6 +71,14 @@ fn rust_main() -> Result<(), core::fmt::Error> {
         }
         writeln!(console)?;
     }
+
+    let x = TwoU8s { one: 22, two: 23 };
+    let y = rust_dbg_extern_identity_TwoU8s(x);
+    assert_eq!(x, y);
+    let x = TwoU8s { one: 10, two: 20 };
+    let y = rust_dbg_extern_return_TwoU8s();
+    assert_eq!(x, y);
+
     panic!("I am a panic");
 }
 
